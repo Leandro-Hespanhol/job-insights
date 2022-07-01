@@ -1,7 +1,7 @@
 from functools import lru_cache
 from . import jobs
 
-# primeiro push
+
 @lru_cache
 def read_brazilian_file(path):
     """Reads a portuguese file from a given path and returns its contents
