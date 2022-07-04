@@ -112,7 +112,6 @@ def get_max_salary(path):
         salary = job["max_salary"]
         if salary.isdigit():
             salaries.append(int(job["max_salary"]))
-    print('maxsalaru', max(salaries))
     return max(salaries)
 
 
@@ -137,7 +136,6 @@ def get_min_salary(path):
         salary = job["min_salary"]
         if salary.isdigit():
             salaries.append(int(job["min_salary"]))
-    print('maxsalaru', min(salaries))
     return min(salaries)
 
 
@@ -165,11 +163,11 @@ def matches_salary_range(job, salary):
         If `salary` isn't a valid integer
     """
     if "min_salary" not in job or "max_salary" not in job:
-        raise ValueError("job must have a min_salary and max_salary")
+        raise ValueError("job is missing a min_salary or a max_salary")
     if type(job["min_salary"]) != int or type(job["max_salary"]) != int:
-        raise ValueError("min_salary and max_salary must be valid integers")
+        raise ValueError("min_salary and max_salary arent valid integers")
     if type(salary) != int:
-        raise ValueError("salary must be a valid integer")
+        raise ValueError("salary is not a valid integer")
     if job["min_salary"] > job["max_salary"]:
         raise ValueError("min_salary cannot be greater than max_salary")
     return salary >= job["min_salary"] and salary <= job["max_salary"]
@@ -198,12 +196,3 @@ def filter_by_salary_range(jobs, salary):
         except ValueError:
             pass
     return jobs_salary
-
-    # jobs_with_salary = list()
-    # for job in jobs:
-    #     try:
-    #         if matches_salary_range(job, salary):
-    #             jobs_with_salary.append(job)
-    #     except ValueError:
-    #         pass
-    # return jobs_with_salary
